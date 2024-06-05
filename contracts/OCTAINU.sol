@@ -464,7 +464,7 @@ contract OCTAINU is Context, IERC20, IERC20Metadata, Ownable {
     uint256 private _initSupply = 48000000000 * 10 ** 18;
 
     // Fees
-    uint256 public charityFee = 10; 
+    uint256 public charityFee = 0; // 0% deploy fee
     address public charityAddress;
 
     uint256 public buyFee = 0; // 
@@ -504,8 +504,10 @@ contract OCTAINU is Context, IERC20, IERC20Metadata, Ownable {
         _mint(msg.sender, _initSupply);
         maxTokenPercentage = 100; // 10% of total supply
         maxTokenAllowance = _totalSupply*(maxTokenPercentage)/(1000);
+        initializer(0x10ED43C718714eb63d5aA57B78B54704E256024E); // pancake swap router address
         _isExcluded[msg.sender] = true;
-        initializer(0x04142a0effe2c9D8e7189edACf7f65EBfa428B40);
+        _isExcluded[address(this)] = true;
+		_isExcluded[pairAddress] = true;
     }
 
     modifier lockTheSwap() {
@@ -587,6 +589,10 @@ contract OCTAINU is Context, IERC20, IERC20Metadata, Ownable {
 
     function blacklistAddress(address _address, bool _bool) public onlyOwner {
         _isBlacklisted[_address] = _bool;
+    }
+
+    function whitelistAddress(address _address, bool _bool) public onlyOwner {
+        _isExcluded[_address] = _bool;
     }
 
     function modifynumTokensSellToAddToLiquidity(
