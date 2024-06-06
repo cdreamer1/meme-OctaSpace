@@ -7,7 +7,7 @@ require("@nomiclabs/hardhat-truffle4");
 const { 
   OCTASPACE_API_URL, 
   METAMASK_PRIVATE_KEY,
-  ETHEREUM_API_KEY
+  ETHEREUM_API_KEY,
 } = process.env;
 
 module.exports = {
