@@ -1,16 +1,12 @@
 const { ethers } = require("hardhat");
-const { TOKEN_SUPPLY, INITIAL_OWNER } = require("../constants");
 
 async function main() {
-  const OctaSpaceToken = await ethers.getContractFactory(
-    "OctaSpaceToken"
+  const OctaInu = await ethers.getContractFactory(
+    "OCTAINU"
   );
-  const OctaSpaceTokenContract = await OctaSpaceToken.deploy(
-    TOKEN_SUPPLY,
-    INITIAL_OWNER
-  );
+  const OctaInuContract = await OctaInu.deploy();
 
-  console.log("OctaSpaceToken Contract deployed to: ", OctaSpaceTokenContract.target);
+  console.log("OctaInu Contract deployed to: ", OctaInuContract.target);
 }
 
 main()

@@ -1,8 +1,0 @@
-const TOKEN_SUPPLY = 10000000;
-
-const INITIAL_OWNER = "0x562461317d060ef040e6c4b1aea362F2b2Af823e";
-
-module.exports = { 
-  TOKEN_SUPPLY, 
-  INITIAL_OWNER,
-};
